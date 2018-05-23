@@ -8,46 +8,63 @@
       <input type="password" v-model="password" @input="isInput" placeholder="输入密码">
     </div>
     <div class="goIn">
-      <button class="btn" :class="{'btn-gray': !canLogin}" @click="login">登录</button>
+      <input type="button" value="登录" class="btn" :disabled="disabled" :class="{'btn-gray': !canLogin}" @click="login">
+      <!-- <button ></button> -->
       <p @click="$router.push({name: 'forget'})">忘记密码</p>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import md5 from 'md5'
-import { Toast } from 'mint-ui'
+import { Toast, Indicator } from 'mint-ui'
 // import { mapActions } from 'vuex'
 export default {
   name: 'login',
   data () {
     return {
       canLogin: false,
-      phone: '',
-      password: ''
+      phone: '15037183341',
+      password: '123456',
+      disabled: false
     }
   },
   methods: {
     login () {
-      this.$router.push({ name: 'getOrder' })
-      // 登录
-      // this.$ajax.post('/api/buyerAccount/login', {
-      //   telephone: this.phone,
-      //   password: md5(this.password)
-      // }).then((data) => {
-      //   if (data.data.code === '200') {
-      //     this.setUserInfo(data.data.data)
-      //     this.setUserToken(data.headers.accesstoken)
-      //     localStorage.setItem('__userAccount__', this.phone + '&&' + this.password)
-      //     this.$router.push({ name: 'getOrder' })
-      //   } else {
-      //     Toast({
-      //       message: data.data.message,
-      //       position: 'bottom'
-      //     })
-      //   }
-      // }).catch((err) => {
-      //   console.log(err)
-      // })
+      if (this.phone === '' || this.password === '') {
+        Toast({
+          message: '用户名或密码错误',
+          position: 'top'
+        })
+        return false
+      }
+       Indicator.open({
+            text: '登陆中...',
+            spinnerType: 'fading-circle'
+          })
+      //登录
+      this.$ajax.post('https://easy-mock.com/mock/5af2912fba54552178d987c1/vue/login', {
+        telephone: this.phone,
+        password: this.password
+      }).then((data) => {
+        console.log(data)
+        if (data.statusText === 'OK') {
+          Indicator.open({
+            text: '登陆中...',
+            spinnerType: 'fading-circle'
+          })
+          setInterval(() => {
+            Indicator.close()
+            this.$router.push({ name: 'getOrder' })
+          }, 500)
+        } else {
+          Toast({
+            message: data.data.message,
+            position: 'bottom'
+          })
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     // ...mapActions([
     //   'setUserInfo',
@@ -57,6 +74,7 @@ export default {
       let reg = /^1[34578]\d{9}$/
       if (reg.test(this.phone) && this.password.length >= 6) {
         this.canLogin = true
+        // this.disable=true
       } else {
         this.canLogin = false
       }

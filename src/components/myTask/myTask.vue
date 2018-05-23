@@ -62,17 +62,20 @@ export default {
   data () {
     return {
       selected: '1,6,7',
-      toFavorNum: '',
-      toPlaceOrderNum: '',
-      waitCommision: '',
-      waitMoneyNum: '',
+      toFavorNum: '4',
+      toPlaceOrderNum: '5',
+      waitCommision: '7',
+      waitMoneyNum: '3',
       order: true,
       money: true,
       favor: true,
       commision: true,
       pageSize: 5,
       // 每次累加总的数据
-      tableData: [],
+      tableData:  [
+        {shopType:0,jdTask:'京东海尔旗舰店',slot:'1',shopName:'电风扇',imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527071991506&di=1009fdd2f13112ad5c7a281b40fbff25&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F017f2f5960e204a8012193a3abbd41.jpg%402o.jpg',myMoney:'25',yongMoney:'5',taskNumber:'UN4123464896'},
+        {shopType:0,jdTask:'京东格力旗舰店',slot:'2',shopName:'电风扇',imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527071991506&di=7d553e31fef623f9d73bb81ecc518aa3&imgtype=0&src=http%3A%2F%2Fwww.310win.com%2Ffiles%2F2016%2F4%2F20160403113146664.jpg',myMoney:'15',yongMoney:'8',taskNumber:'UN4123664896'}
+        ],
       loadAllData: [],
       bottomText: '上拉加载更多...',
       totalCount: '',
@@ -86,7 +89,7 @@ export default {
   },
   watch: {
     selected (value) {
-      this.taskList()
+      // this.taskList()
     }
   },
   computed: {
@@ -248,8 +251,8 @@ export default {
     }
   },
   mounted () {
-    this.pointNum()
-    this.taskList()
+    // this.pointNum()
+    // this.taskList()
     this.$refs.myTask.addEventListener('scroll', this.handleScroll)
     this.$refs.myTask.addEventListener('touchstart', this.touchStart)
     this.$refs.myTask.addEventListener('touchend', this.touchEnd)

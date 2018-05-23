@@ -62,17 +62,20 @@ export default {
   data () {
     return {
       selected: '1,6,7',
-      toFavorNum: '',
-      toPlaceOrderNum: '',
-      waitCommision: '',
-      waitMoneyNum: '',
+      toFavorNum: '5',
+      toPlaceOrderNum: '6',
+      waitCommision: '7',
+      waitMoneyNum: '4',
       order: true,
       money: true,
       favor: true,
       commision: true,
       pageSize: 5,
       // 每次累加总的数据
-      tableData: [],
+      tableData: [
+        {shopType:0,jdTask:'京东海尔旗舰店',slot:'1',shopName:'电风扇',imgSrc:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2659949863,3862003696&fm=27&gp=0.jpg',myMoney:'25',yongMoney:'5',taskNumber:'UN4123464896'},
+        {shopType:0,jdTask:'京东格力旗舰店',slot:'2',shopName:'电风扇',imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527069723969&di=65b72f82546d249be8cf21f7936c7e3d&imgtype=0&src=http%3A%2F%2Fpic12.photophoto.cn%2F20090921%2F0013025522678560_b.jpg',myMoney:'15',yongMoney:'8',taskNumber:'UN4123664896'}
+        ],
       loadAllData: [],
       bottomText: '上拉加载更多...',
       totalCount: '',
@@ -86,7 +89,7 @@ export default {
   },
   watch: {
     selected (value) {
-      this.taskList()
+      // this.taskList()
     }
   },
   computed: {
@@ -96,11 +99,11 @@ export default {
       } else {
         return true
       }
-    },
-    ...mapGetters([
-      'userInfo',
-      'userToken'
-    ])
+    }
+    // ...mapGetters([
+    //   'userInfo',
+    //   'userToken'
+    // ])
   },
   methods: {
     show (index) {
@@ -148,12 +151,11 @@ export default {
       }
     },
     pointNum () {
-      this.$ajax.post('/api/buyer/task/getTodoNumList', {
-        buyerUserId: this.userInfo.buyerUserAccountId,
-        shopType: '1,2'
+      this.$ajax.post('https://easy-mock.com/mock/5af2912fba54552178d987c1/vue/getTodoNumList', {
       }).then((data) => {
+        console.log(data)
         let res = data.data
-        if (res.code === '200') {
+        if (res.code === 200) {
           // 待评价
           this.toFavorNum = res.data.toFavorNum
           // 待下单
@@ -162,7 +164,6 @@ export default {
           this.waitCommision = res.data.waitCommision
           // 待返款
           this.waitMoneyNum = res.data.waitMoneyNum
-        } else {
         }
         if (this.toPlaceOrderNum === 0) {
           this.order = false
@@ -249,7 +250,7 @@ export default {
   },
   mounted () {
     this.pointNum()
-    this.taskList()
+    // this.taskList()
     this.$refs.myTask.addEventListener('scroll', this.handleScroll)
     this.$refs.myTask.addEventListener('touchstart', this.touchStart)
     this.$refs.myTask.addEventListener('touchend', this.touchEnd)

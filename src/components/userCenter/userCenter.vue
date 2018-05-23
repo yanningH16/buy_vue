@@ -7,7 +7,8 @@
         <span @click="toDo('task')">设置</span>
       </li>
       <li class="userPhone">
-        <span>{{ userInfo.telephone ? userInfo.telephone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') : '******' }}</span>
+        <!-- <span>{{ userInfo.telephone ? userInfo.telephone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') : '******' }}</span> -->
+        <span>{{15037183341}}</span>
         <i></i>
       </li>
     </ul>
@@ -15,11 +16,12 @@
       <ul class="title">
         <li class="border-right-1px" @click="toDo('yongjin')">
           <span>佣金收益(元)</span>
-          <p>{{ moneyObj.availableCommissionAmount }}</p>
+          <!-- <p>{{ moneyObj.availableCommissionAmount }}</p> -->
+          <p>{{560}}</p>
         </li>
         <li @click="toDo('benjin')">
           <span>本金总计(元)</span>
-          <p>{{ moneyObj.availableCapitalAmount }}</p>
+          <p>{{ moneyObj.availableCapitalAmount||330 }}</p>
         </li>
       </ul>
       <ul class="cell">
@@ -74,7 +76,7 @@
 </template>
 <script type="text/ecmascript-6">
 import { Toast } from 'mint-ui'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   name: 'userCenter',
   data () {
@@ -84,9 +86,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'userInfo'
-    ])
+    // ...mapGetters([
+    //   'userInfo'
+    // ])
   },
   methods: {
     toDo (where) {
@@ -158,8 +160,8 @@ export default {
     }
   },
   mounted () {
-    this.getMoney()
-    this.getTaskNum()
+    // this.getMoney()
+    // this.getTaskNum()
   }
 }
 </script>

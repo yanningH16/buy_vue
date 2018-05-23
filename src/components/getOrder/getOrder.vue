@@ -142,25 +142,7 @@ export default {
       })
     },
     toLightMe () {
-      this.$ajax.post('/api/buyerAccount/changeIdentify', {
-        buyerAccountId: this.userInfo.buyerUserAccountId,
-        identify: 1
-      }).then((data) => {
-        if (data.data.code === '200') {
-          this.yes = false
-          this.refresh()
-        } else {
-          Toast({
-            message: data.data.message,
-            position: 'bottom'
-          })
-        }
-      }).catch((err) => {
-        Toast({
-          message: err,
-          position: 'bottom'
-        })
-      })
+     this.buyerIdentify=true
     },
     // 刷新用户信息
     refresh () {
