@@ -42,29 +42,29 @@ export default {
             spinnerType: 'fading-circle'
           })
       //登录
-      this.$ajax.post('https://easy-mock.com/mock/5af2912fba54552178d987c1/vue/login', {
-        telephone: this.phone,
-        password: this.password
-      }).then((data) => {
-        console.log(data)
-        if (data.statusText === 'OK') {
-          Indicator.open({
-            text: '登陆中...',
-            spinnerType: 'fading-circle'
-          })
-          setInterval(() => {
-            Indicator.close()
-            this.$router.push({ name: 'getOrder' })
-          }, 500)
-        } else {
-          Toast({
-            message: data.data.message,
-            position: 'bottom'
-          })
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      // this.$ajax.post('https://easy-mock.com/mock/5af2912fba54552178d987c1/vue/login', {
+      //   telephone: this.phone,
+      //   password: this.password
+      // }).then((data) => {
+      //   console.log(data)
+      //   if (data.statusText === 'OK') {
+      //     Indicator.open({
+      //       text: '登陆中...',
+      //       spinnerType: 'fading-circle'
+      //     })
+      //     setInterval(() => {
+      //       Indicator.close()
+      //       this.$router.push({ name: 'getOrder' })
+      //     }, 500)
+      //   } else {
+      //     Toast({
+      //       message: data.data.message,
+      //       position: 'bottom'
+      //     })
+      //   }
+      // }).catch((err) => {
+      //   console.log(err)
+      // })
     },
     // ...mapActions([
     //   'setUserInfo',

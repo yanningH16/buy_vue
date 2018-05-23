@@ -249,7 +249,7 @@ export default {
     }
   },
   mounted () {
-    this.pointNum()
+    // this.pointNum()
     // this.taskList()
     this.$refs.myTask.addEventListener('scroll', this.handleScroll)
     this.$refs.myTask.addEventListener('touchstart', this.touchStart)

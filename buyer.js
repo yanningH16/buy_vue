@@ -5,13 +5,7 @@ var history = require('connect-history-api-fallback')
 var compression = require('compression')
 var app = express()
 app.use(compression())
-app.use('/api', proxy({
-  target: 'http://182.61.24.42:8089',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api': ''
-  }
-}))
+
 app.use(history({
   index: './index.html'
 }))
