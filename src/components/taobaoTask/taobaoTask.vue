@@ -73,7 +73,7 @@ export default {
       pageSize: 5,
       // 每次累加总的数据
       tableData: [
-        {shopType:0,jdTask:'京东海尔旗舰店',slot:'1',shopName:'电风扇',imgSrc:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2659949863,3862003696&fm=27&gp=0.jpg',myMoney:'25',yongMoney:'5',taskNumber:'UN4123464896'},
+        {shopType:0,jdTask:'京东海尔旗舰店',slot:'1',shopName:'电风扇',imgSrc:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2659949863,3862003696&fm=27&gp=0.jpg',myMoney:'25',yongMoney:'5',taskNumber:'UN4123464896',btn:'1'},
         {shopType:0,jdTask:'京东格力旗舰店',slot:'2',shopName:'电风扇',imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527069723969&di=65b72f82546d249be8cf21f7936c7e3d&imgtype=0&src=http%3A%2F%2Fpic12.photophoto.cn%2F20090921%2F0013025522678560_b.jpg',myMoney:'15',yongMoney:'8',taskNumber:'UN4123664896'}
         ],
       loadAllData: [],

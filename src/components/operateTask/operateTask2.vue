@@ -62,13 +62,16 @@ export default {
         Toast({
           message: '请输入订单号!'
         })
+        return false
       } else if (this.stpesObj.step9Arr[1] === '') {
         Toast({
           message: '请输入实付金额!'
         })
+        return false
       } else {
-        this.toPost()
+        // this.toPost()
       }
+      this.$router.push({ name: 'taobaoTask' })
     },
     toPost () {
       this.$ajax.post('/api/buyer/task/doTaskSecond', {
@@ -145,9 +148,9 @@ export default {
     }
   },
   mounted () {
-    this.getTaskInfo()
+    // this.getTaskInfo()
     if (this.$route.query.rbBuyerTaskId || this.$route.query.backBuyerTaskId) {
-      this.getRbInfo()
+      // this.getRbInfo()
     }
   }
 }

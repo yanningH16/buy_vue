@@ -17,8 +17,8 @@ Vue.prototype.$ajax = axios
 
 // 图片懒加载
 Vue.use(VueLazyLoad, {
-  loading: './assets/images/loading.gif',
-  error: './assets/images/noContainer.svg'
+  // loading: './assets/images/loading.gif',
+  // error: './assets/images/noContainer.svg'
 })
 
 Vue.filter('phonePwd', function (value) {

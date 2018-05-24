@@ -9,12 +9,12 @@
         <span>京东</span>
       </li>
     </ul>
-    <div class="bottom" v-if="packageObj.actualLeftNum>=0">
+    <div class="bottom" >
       <h3>你有一个新的任务包</h3>
       <ul class="boxContent">
         <li class="first">
           <div class="imgWrap">
-            <img v-for="(item, index) in (packageObj.imageUrls ? JSON.parse(packageObj.imageUrls) : [])" :style="{ 'top': 5*index+'px', 'left': 5*index+'px' }" :src="item" :key="index" alt="">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1527128912&di=4ebcd667b01dd742cc3cb74a2cb530d2&src=http://media-cdn.tripadvisor.com/media/photo-s/01/48/a9/f6/tup-island.jpg" :key="index" alt="">
           </div>
           <div>
             <h6>任务类型:</h6>
@@ -22,18 +22,18 @@
               <i class="jdIcon"></i> 京东垫付X{{ packageObj.jdNum }}</p>
             <p v-if="packageObj.taobaoNum">
               <i class="taobaoIcon"></i> 淘宝垫付X{{ packageObj.taobaoNum }}</p>
-            <p v-if="packageObj.tianmaoNum">
-              <i class="tianmaoIcon"></i> 天猫垫付X{{ packageObj.tianmaoNum }}</p>
+            <p >
+              <i class="tianmaoIcon"></i> 天猫垫付100</p>
           </div>
         </li>
         <li class="first two">
           <div class="line">
             <p>佣金收益(元)</p>
-            <p class="money">{{ packageObj.totalCommission }}</p>
+            <p class="money">5.5</p>
           </div>
           <div>
             <p>垫付本金(元)</p>
-            <p class="money">{{ packageObj.totalCapital }}</p>
+            <p class="money">55</p>
           </div>
         </li>
       </ul>
@@ -47,7 +47,7 @@
       </ul>
     </div>
     <!-- 第二种未点亮的状态 -->
-    <div class="bottom text" v-if="typeof(packageObj)=='object'">
+    <div class="bottom text" v-if="false">
       <div class="text_1">
         <p>哎呦,不错呦!</p>
         <p>点亮自己告诉平台我要做活动</p>
@@ -92,6 +92,7 @@ export default {
     },
     // 领取该任务包
     toGetPackage () {
+      this.$router.push({ name: 'taobaoTask' })
       this.$ajax.post('/api/order/buyerAcceptPackage', {
         assignedUserId: this.userInfo.buyerUserAccountId,
         platformPackageId: this.packageObj.platformPackageId

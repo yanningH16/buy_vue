@@ -32,7 +32,7 @@
     </ul>
     <div class="next">
       <span v-if="$route.query.buyerTaskId || $route.query.backBuyerTaskId" class="btn" :class="{ 'btn-gray':!isPass }" @click="doNext">下一步</span>
-      <span v-if="$route.query.rbBuyerTaskId" class="btn" :class="{ 'btn-gray':!isPass }" @click="doNext">下一步</span>
+      <span class="btn" :class="{ 'btn-gray':isPass }" @click="doNext">下一步</span>
     </div>
     <p>如遇问题，请微信联系您的专属客服</p>
   </div>
@@ -190,6 +190,7 @@ export default {
       //     this.submit()
       //   }
       // }
+      this.$router.push({ name: 'operateTask2' })
       if (this.isPass) {
         this.submit()
       }
@@ -240,9 +241,9 @@ export default {
     }
   },
   mounted () {
-    this.getTaskInfo()
+    // this.getTaskInfo()
     if (this.$route.query.rbBuyerTaskId || this.$route.query.backBuyerTaskId) {
-      this.getRbInfo()
+      // this.getRbInfo()
     }
   }
 }
